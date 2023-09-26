@@ -83,6 +83,7 @@ int tcp_client_parse_arguments(int argc, char *argv[], Config *config) {
                 // check if input is digit
                 if (!isdigit(optarg[i])) {
                     log_error("'%s' is not a valid port\n", optarg);
+                    printf(HELP_MESSAGE);
                     exit(EXIT_FAILURE);
                 }
             }
@@ -91,22 +92,27 @@ int tcp_client_parse_arguments(int argc, char *argv[], Config *config) {
             break;
 
         case '?':
+            printf(HELP_MESSAGE);
+            exit(EXIT_FAILURE);
             break;
 
         default:
             printf("?? getopt returned character code 0%o ??\n", getopt_return_value);
+            break;
         }
     }
     
     // check if there is not enough arguments
     if ((argc - optind) < REQUIRED_NUMBER_OF_ARGUMENTS_OFFSET) {
         log_error("Missing argument(s)!\n");
+        printf(HELP_MESSAGE);
         exit(EXIT_FAILURE);
     }
 
     // check if there are too many arguments
     if ((argc - optind) > REQUIRED_NUMBER_OF_ARGUMENTS_OFFSET) {
         log_error("Too many arguments!\n");
+        printf(HELP_MESSAGE);
         exit(EXIT_FAILURE);
     }
 
@@ -122,6 +128,7 @@ int tcp_client_parse_arguments(int argc, char *argv[], Config *config) {
         // at end of the available action and still no match
         if (i == NUMBER_OF_ACTIONS - 1) {
             log_error("Invalid action!\n");
+            printf(HELP_MESSAGE);
             exit(EXIT_FAILURE);
         }
     }
