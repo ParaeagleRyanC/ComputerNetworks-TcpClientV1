@@ -3,7 +3,7 @@
 This program is a simple TCP client that sends data to a server to be transformed. 
 The client is a command-line tool that follows standard Unix norms.
 
-After `make`-ing the program, in a terminal, a request can be sent in the following format: `ACTION LENGTH MESSAGE`.
+After `make`-ing the program, in a terminal, a request can be sent in the following format: `./tcp_client ACTION LENGTH MESSAGE`.
 
 The ACTION can be one of the following 5 options:
 * Uppercase
